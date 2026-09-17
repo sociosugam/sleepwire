@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A local news desk for the sleep ecosystem." />
+  <title>Sleep Wire — Intelligence Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:opsz,wght@5..120,600;5..120,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Sleep Wire home"><span class="brand-mark">S</span><span>SLEEP<br><b>WIRE</b></span></a>
+    <p class="edition">INTELLIGENCE DESK <span>•</span> GLOBAL EDITION</p>
+    <div class="live"><i></i> LIVE FEEDS</div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">THE SLEEP ECOSYSTEM, CURATED</p>
+        <h1>What's moving<br>while the world <em>sleeps.</em></h1>
+        <p class="intro">A working news desk for sleep science, innovation, business and culture. Read the signal, find the story.</p>
+      </div>
+      <div class="refresh-panel">
+        <p>LAST SCANNED</p>
+        <strong id="lastUpdated">Loading feed…</strong>
+        <button id="refreshButton" class="refresh-button" type="button"><span>↻</span> Refresh intelligence</button>
+        <a class="download-button" href="/api/news.csv">Download spreadsheet</a>
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="Feed overview">
+      <div><span id="storyCount">—</span><p>stories tracked</p></div>
+      <div><span id="sourceCount">—</span><p>sources scanned</p></div>
+      <div><span id="freshCount">—</span><p>new in 48 hours</p></div>
+      <div><span>24/7</span><p>public web monitor</p></div>
+    </section>
+
+    <section class="featured-story" aria-labelledby="featuredTitle">
+      <img src="assets/sleep-wellness-feature-v2.png" alt="A dawn sleep journal and moon-shaped lamp beside a restful bedroom" />
+      <div class="featured-overlay">
+        <p class="eyebrow">FEATURED SIGNAL <span id="featuredCategory">LIVE DESK</span></p>
+        <h2 id="featuredTitle">Today’s most important sleep story.</h2>
+        <p id="featuredSummary">The latest reporting from the sleep ecosystem, selected from the live briefing.</p>
+        <a id="featuredLink" target="_blank" rel="noopener noreferrer" href="#stories">Open story <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="wellness-index" aria-labelledby="wellnessTitle">
+      <div class="index-heading">
+        <div>
+          <p class="eyebrow">GLOBAL SLEEP WELLNESS INDEX</p>
+          <h2 id="wellnessTitle">How sleep wellness compares worldwide.</h2>
+          <p>Indicative 0–100 comparative scores. Updated with the local live desk; not a medical or official national ranking.</p>
+        </div>
+        <div class="index-update"><i></i><span id="wellnessUpdated">Loading index…</span></div>
+      </div>
+      <div class="index-tabs" role="tablist" aria-label="Sleep wellness rankings">
+        <button class="active" data-ranking="continents" role="tab" aria-selected="true">By continent</button>
+        <button data-ranking="countries" role="tab" aria-selected="false">By country</button>
+        <button data-ranking="cities" role="tab" aria-selected="false">By city</button>
+      </div>
+      <div class="ranking-wrap">
+        <table class="ranking-table">
+          <thead><tr><th>Rank</th><th id="rankingPlace">Continent</th><th>Index</th><th>Signal</th></tr></thead>
+          <tbody id="rankingBody"><tr><td colspan="4">Loading live ranking…</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Filter news">
+      <div class="filter-tabs" role="tablist">
+        <button class="active" data-category="All" role="tab">All signal</button>
+        <button data-category="Science" role="tab">Science</button>
+        <button data-category="Innovation" role="tab">Innovation</button>
+        <button data-category="Business" role="tab">Business</button>
+        <button data-category="Culture" role="tab">Culture</button>
+      </div>
+      <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search this briefing" /></label>
+    </section>
+
+    <div id="status" class="status" role="status">Opening public news wires…</div>
+    <section id="stories" class="stories" aria-live="polite"></section>
+  </main>
+
+  <template id="storyTemplate">
+    <article class="story-card">
+      <img class="story-image" src="assets/sleep-wellness-feature.png" alt="" loading="lazy" />
+      <div class="story-meta"><span class="category"></span><time></time></div>
+      <h2></h2>
+      <p class="summary"></p>
+      <footer><span class="source"></span><a target="_blank" rel="noopener noreferrer">Read original <span>↗</span></a></footer>
+    </article>
+  </template>
+
+  <footer class="site-footer"><span>SLEEP WIRE / INDEPENDENT NEWS INTELLIGENCE</span><span>Public RSS sources · No paid data service</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
